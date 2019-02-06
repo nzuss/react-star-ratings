@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -6,15 +6,15 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = require('react');
+var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _propTypes = require('prop-types');
+var _propTypes = require("prop-types");
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _star = require('./star');
+var _star = require("./star");
 
 var _star2 = _interopRequireDefault(_star);
 
@@ -42,7 +42,7 @@ var StarRatings = function (_React$Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = StarRatings.__proto__ || Object.getPrototypeOf(StarRatings)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
       highestStarHovered: -Infinity
-    }, _this.fillId = 'starGrad' + Math.random().toFixed(15).slice(2), _this.hoverOverStar = function (starRating) {
+    }, _this.fillId = "starGrad" + Math.random().toFixed(15).slice(2), _this.hoverOverStar = function (starRating) {
       return function () {
         _this.setState({
           highestStarHovered: starRating
@@ -56,16 +56,16 @@ var StarRatings = function (_React$Component) {
   }
 
   _createClass(StarRatings, [{
-    key: 'stopColorStyle',
+    key: "stopColorStyle",
     value: function stopColorStyle(color) {
       var stopColorStyle = {
         stopColor: color,
-        stopOpacity: '1'
+        stopOpacity: "1"
       };
       return this.props.ignoreInlineStyles ? {} : stopColorStyle;
     }
   }, {
-    key: 'render',
+    key: "render",
     value: function render() {
       var _props = this.props,
           starRatedColor = _props.starRatedColor,
@@ -73,28 +73,41 @@ var StarRatings = function (_React$Component) {
 
 
       return _react2.default.createElement(
-        'div',
+        "div",
         {
-          className: 'star-ratings',
+          className: "star-ratings",
           title: this.titleText,
           style: this.starRatingsStyle
         },
         _react2.default.createElement(
-          'svg',
-          {
-            className: 'star-grad',
-            style: this.starGradientStyle
-          },
+          "svg",
+          { className: "star-grad", style: this.starGradientStyle },
           _react2.default.createElement(
-            'defs',
+            "defs",
             null,
             _react2.default.createElement(
-              'linearGradient',
-              { id: this.fillId, x1: '0%', y1: '0%', x2: '100%', y2: '0%' },
-              _react2.default.createElement('stop', { offset: '0%', className: 'stop-color-first', style: this.stopColorStyle(starRatedColor) }),
-              _react2.default.createElement('stop', { offset: this.offsetValue, className: 'stop-color-first', style: this.stopColorStyle(starRatedColor) }),
-              _react2.default.createElement('stop', { offset: this.offsetValue, className: 'stop-color-final', style: this.stopColorStyle(starEmptyColor) }),
-              _react2.default.createElement('stop', { offset: '100%', className: 'stop-color-final', style: this.stopColorStyle(starEmptyColor) })
+              "linearGradient",
+              { id: this.fillId, x1: "0%", y1: "0%", x2: "100%", y2: "0%" },
+              _react2.default.createElement("stop", {
+                offset: "0%",
+                className: "stop-color-first",
+                style: this.stopColorStyle(starRatedColor)
+              }),
+              _react2.default.createElement("stop", {
+                offset: this.offsetValue,
+                className: "stop-color-first",
+                style: this.stopColorStyle(starRatedColor)
+              }),
+              _react2.default.createElement("stop", {
+                offset: this.offsetValue,
+                className: "stop-color-final",
+                style: this.stopColorStyle(starEmptyColor)
+              }),
+              _react2.default.createElement("stop", {
+                offset: "100%",
+                className: "stop-color-final",
+                style: this.stopColorStyle(starEmptyColor)
+              })
             )
           )
         ),
@@ -102,33 +115,34 @@ var StarRatings = function (_React$Component) {
       );
     }
   }, {
-    key: 'starRatingsStyle',
+    key: "starRatingsStyle",
     get: function get() {
       var starRatingsStyle = {
-        position: 'relative',
-        boxSizing: 'border-box',
-        display: 'inline-block'
+        position: "relative",
+        boxSizing: "border-box",
+        display: "inline-block"
       };
       return this.props.ignoreInlineStyles ? {} : starRatingsStyle;
     }
   }, {
-    key: 'starGradientStyle',
+    key: "starGradientStyle",
     get: function get() {
       var starGradientStyle = {
-        position: 'absolute',
-        zIndex: '0',
-        width: '0',
-        height: '0',
-        visibility: 'hidden'
+        position: "absolute",
+        zIndex: "0",
+        width: "0",
+        height: "0",
+        visibility: "hidden"
       };
       return this.props.ignoreInlineStyles ? {} : starGradientStyle;
     }
   }, {
-    key: 'titleText',
+    key: "titleText",
     get: function get() {
       var _props2 = this.props,
           typeOfWidget = _props2.typeOfWidget,
-          selectedRating = _props2.rating;
+          selectedRating = _props2.rating,
+          customTitleText = _props2.customTitleText;
 
       var hoveredRating = this.state.highestStarHovered;
       var currentRating = hoveredRating > 0 ? hoveredRating : selectedRating;
@@ -137,26 +151,30 @@ var StarRatings = function (_React$Component) {
       if (Number.isInteger(currentRating)) {
         formattedRating = String(currentRating);
       }
-      var starText = typeOfWidget + 's';
-      if (formattedRating === '1') {
+
+      var starText = typeOfWidget + "s";
+      if (formattedRating === "1") {
         starText = typeOfWidget;
       }
-      return formattedRating + ' ' + starText;
+      if (customTitleText) {
+        return typeOfWidget;
+      }
+      return formattedRating + " " + starText;
     }
   }, {
-    key: 'offsetValue',
+    key: "offsetValue",
     get: function get() {
       var rating = this.props.rating;
       var ratingIsInteger = Number.isInteger(rating);
-      var offsetValue = '0%';
+      var offsetValue = "0%";
       if (!ratingIsInteger) {
-        var firstTwoDecimals = rating.toFixed(2).split('.')[1].slice(0, 2);
-        offsetValue = firstTwoDecimals + '%';
+        var firstTwoDecimals = rating.toFixed(2).split(".")[1].slice(0, 2);
+        offsetValue = firstTwoDecimals + "%";
       }
       return offsetValue;
     }
   }, {
-    key: 'renderStars',
+    key: "renderStars",
     get: function get() {
       var _this2 = this;
 
@@ -245,18 +263,18 @@ StarRatings.propTypes = {
 
 StarRatings.defaultProps = {
   rating: 0,
-  typeOfWidget: 'Star',
+  typeOfWidget: "Star",
   numberOfStars: 5,
   changeRating: null,
-  starHoverColor: 'rgb(230, 67, 47)',
-  starRatedColor: 'rgb(109, 122, 130)',
-  starEmptyColor: 'rgb(203, 211, 227)',
-  starDimension: '50px',
-  starSpacing: '7px',
-  gradientPathName: '',
+  starHoverColor: "rgb(230, 67, 47)",
+  starRatedColor: "rgb(109, 122, 130)",
+  starEmptyColor: "rgb(203, 211, 227)",
+  starDimension: "50px",
+  starSpacing: "7px",
+  gradientPathName: "",
   ignoreInlineStyles: false,
-  svgIconPath: 'm25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z',
-  svgIconViewBox: '0 0 51 48'
+  svgIconPath: "m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z",
+  svgIconViewBox: "0 0 51 48"
 };
 
 exports.default = StarRatings;
