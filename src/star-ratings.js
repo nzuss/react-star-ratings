@@ -39,12 +39,7 @@ class StarRatings extends React.Component {
   }
 
   get titleText() {
-    const {
-      typeOfWidget,
-      rating: selectedRating,
-      customTitleText,
-      titleTexts
-    } = this.props;
+    const { typeOfWidget, rating: selectedRating, ratingTexts } = this.props;
     const hoveredRating = this.state.highestStarHovered;
     const currentRating = hoveredRating > 0 ? hoveredRating : selectedRating;
     // fix it at 2 decimal places and remove trailing 0s
@@ -57,9 +52,7 @@ class StarRatings extends React.Component {
     if (formattedRating === "1") {
       starText = typeOfWidget;
     }
-    if (customTitleText) {
-      return titleTexts;
-    }
+
     return `${formattedRating} ${starText}`;
   }
 
@@ -105,7 +98,8 @@ class StarRatings extends React.Component {
       ignoreInlineStyles,
       svgIconPath,
       svgIconViewBox,
-      name
+      name,
+      ratingTexts
     } = this.props;
     const { highestStarHovered } = this.state;
 
@@ -130,6 +124,7 @@ class StarRatings extends React.Component {
 
       return (
         <Star
+          title={ratingTexts[index]}
           key={starRating}
           fillId={this.fillId}
           changeRating={
@@ -164,7 +159,7 @@ class StarRatings extends React.Component {
     return (
       <div
         className="star-ratings"
-        title={this.titleText}
+        // title={this.titleText}
         style={this.starRatingsStyle}
       >
         <svg className="star-grad" style={this.starGradientStyle}>

@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -6,15 +6,15 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = require('react');
+var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _classnames = require('classnames');
+var _classnames = require("classnames");
 
 var _classnames2 = _interopRequireDefault(_classnames);
 
-var _propTypes = require('prop-types');
+var _propTypes = require("prop-types");
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
@@ -36,41 +36,39 @@ var Star = function (_React$Component) {
   }
 
   _createClass(Star, [{
-    key: 'render',
+    key: "render",
     value: function render() {
       var _props = this.props,
           changeRating = _props.changeRating,
           hoverOverStar = _props.hoverOverStar,
           unHoverOverStar = _props.unHoverOverStar,
           svgIconViewBox = _props.svgIconViewBox,
-          svgIconPath = _props.svgIconPath;
+          svgIconPath = _props.svgIconPath,
+          title = _props.title;
 
       return _react2.default.createElement(
-        'div',
+        "div",
         {
-          className: 'star-container',
+          className: "star-container",
           style: this.starContainerStyle,
           onMouseEnter: hoverOverStar,
           onMouseLeave: unHoverOverStar,
-          onClick: changeRating
+          onClick: changeRating,
+          title: title
         },
         _react2.default.createElement(
-          'svg',
+          "svg",
           {
             viewBox: svgIconViewBox,
             className: this.starClasses,
             style: this.starSvgStyle
           },
-          _react2.default.createElement('path', {
-            className: 'star',
-            style: this.pathStyle,
-            d: svgIconPath
-          })
+          _react2.default.createElement("path", { className: "star", style: this.pathStyle, d: svgIconPath })
         )
       );
     }
   }, {
-    key: 'starContainerStyle',
+    key: "starContainerStyle",
     get: function get() {
       var _props2 = this.props,
           changeRating = _props2.changeRating,
@@ -81,17 +79,17 @@ var Star = function (_React$Component) {
 
 
       var starContainerStyle = {
-        position: 'relative',
-        display: 'inline-block',
-        verticalAlign: 'middle',
+        position: "relative",
+        display: "inline-block",
+        verticalAlign: "middle",
         paddingLeft: isFirstStar ? undefined : starSpacing,
         paddingRight: isLastStar ? undefined : starSpacing,
-        cursor: changeRating ? 'pointer' : undefined
+        cursor: changeRating ? "pointer" : undefined
       };
       return ignoreInlineStyles ? {} : starContainerStyle;
     }
   }, {
-    key: 'starSvgStyle',
+    key: "starSvgStyle",
     get: function get() {
       var _props3 = this.props,
           ignoreInlineStyles = _props3.ignoreInlineStyles,
@@ -101,14 +99,14 @@ var Star = function (_React$Component) {
       var starSvgStyle = {
         width: starDimension,
         height: starDimension,
-        transition: 'transform .2s ease-in-out',
-        transform: isCurrentHoveredStar ? 'scale(1.1)' : undefined
+        transition: "transform .2s ease-in-out",
+        transform: isCurrentHoveredStar ? "scale(1.1)" : undefined
       };
 
       return ignoreInlineStyles ? {} : starSvgStyle;
     }
   }, {
-    key: 'pathStyle',
+    key: "pathStyle",
     get: function get() {
       var _props4 = this.props,
           isStarred = _props4.isStarred,
@@ -127,18 +125,18 @@ var Star = function (_React$Component) {
       if (hoverMode) {
         if (isHovered) fill = starHoverColor;else fill = starEmptyColor;
       } else {
-        if (isPartiallyFullStar) fill = 'url(\'' + gradientPathName + '#' + fillId + '\')';else if (isStarred) fill = starRatedColor;else fill = starEmptyColor;
+        if (isPartiallyFullStar) fill = "url('" + gradientPathName + "#" + fillId + "')";else if (isStarred) fill = starRatedColor;else fill = starEmptyColor;
       }
 
       var pathStyle = {
         fill: fill,
-        transition: 'fill .2s ease-in-out'
+        transition: "fill .2s ease-in-out"
       };
 
       return ignoreInlineStyles ? {} : pathStyle;
     }
   }, {
-    key: 'starClasses',
+    key: "starClasses",
     get: function get() {
       var _props5 = this.props,
           isSelected = _props5.isSelected,
@@ -149,11 +147,11 @@ var Star = function (_React$Component) {
 
 
       var starClasses = (0, _classnames2.default)({
-        'widget-svg': true,
-        'widget-selected': isSelected,
-        'multi-widget-selected': isPartiallyFullStar,
-        'hovered': isHovered,
-        'current-hovered': isCurrentHoveredStar
+        "widget-svg": true,
+        "widget-selected": isSelected,
+        "multi-widget-selected": isPartiallyFullStar,
+        hovered: isHovered,
+        "current-hovered": isCurrentHoveredStar
       });
 
       return ignoreInlineStyles ? {} : starClasses;
