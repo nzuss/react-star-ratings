@@ -42,7 +42,8 @@ class StarRatings extends React.Component {
     const {
       typeOfWidget,
       rating: selectedRating,
-      customTitleText
+      customTitleText,
+      titleTexts
     } = this.props;
     const hoveredRating = this.state.highestStarHovered;
     const currentRating = hoveredRating > 0 ? hoveredRating : selectedRating;
@@ -57,7 +58,7 @@ class StarRatings extends React.Component {
       starText = typeOfWidget;
     }
     if (customTitleText) {
-      return typeOfWidget;
+      return titleTexts;
     }
     return `${formattedRating} ${starText}`;
   }
@@ -215,6 +216,7 @@ StarRatings.propTypes = {
 };
 
 StarRatings.defaultProps = {
+  titleTexts: "Stars",
   rating: 0,
   typeOfWidget: "Star",
   numberOfStars: 5,
