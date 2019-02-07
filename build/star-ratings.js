@@ -351,6 +351,7 @@ StarRatings.propTypes = {
 };
 
 StarRatings.defaultProps = {
+  titleText: "stars",
   rating: 0,
   typeOfWidget: "Star",
   numberOfStars: 5,
